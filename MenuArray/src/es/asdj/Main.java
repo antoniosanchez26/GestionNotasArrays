@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int opcion,suma = 0,promedio,numMayor = 0,numMenor = 0;
-        int[] array = new int[5];
+        int opcion, suma, promedio, numMayor, numMenor;
+        int[] notas = new int[5];
         Scanner entrada = new Scanner(System.in);
 
         do {
-
             System.out.println("MENÚ");
             System.out.println("============================");
             System.out.println("1.- (Re)Crgar.");
@@ -24,53 +23,61 @@ public class Main {
 
             switch(opcion) {
                 case 1:
-                    for (int i = 0; i < array.length; i++) {
+                    for (int i = 0; i < notas.length; i++) {
                         System.out.print("Número " + (i + 1) + ": ");
-                        array[i] = entrada.nextInt();
+                        notas[i] = entrada.nextInt();
                     }
                     break;
                 case 2:
                     System.out.println("Array 1:");
-                    for (int i = 0; i < array.length; i++) {
-                        System.out.print(array[i] + " ");
+                    for (int i = 0; i < notas.length; i++) {
+                        System.out.print(notas[i] + " ");
                     }
                     System.out.println();
                     break;
                 case 3:
                     suma = 0;
-                    for (int i = 0; i < array.length; i++) {
-                        suma = suma + array[i];
+                    for (int i = 0; i < notas.length; i++) {
+                        suma = suma + notas[i];
                     }
                     System.out.println(suma);
                     break;
                 case 4:
-                    promedio = suma / array.length;
+                    suma = 0;
+                    for (int i = 0; i < notas.length; i++) {
+                        suma = suma + notas[i];
+                    }
+                    promedio = suma / notas.length;
                     System.out.println(promedio);
                     break;
                 case 5:
-                    for (int i = 0; i < array.length; i++) {
-                        if (array[i] > numMayor){
-                            numMayor = array[i];
+                    numMayor = notas[0];
+                    numMenor = notas[0];
+                    for (int i = 1; i < notas.length; i++) {
+                        if (notas[i] > numMayor){
+                            numMayor = notas[i];
+                        }
+                        if (notas[i] < numMenor){
+                            numMenor = notas[i];
                         }
                     }
                     System.out.println("El número mayor es: " + numMayor);
-
-                    for (int i = 0; i < array.length; i++) {
-                        if (numMenor < array.length){
-                            numMenor = array[i];
-                        }
-                    }
                     System.out.println("El número menor es: " + numMenor);
-
+                    break;
+                case 0:
+                    System.out.println("¡Hasta Pronto!");
                     break;
                 default:
                     System.out.println("La opción no es válida");
             }
-                entrada.nextLine();
 
-                System.out.print("Pulsa INTRO para continuar...");
-                entrada.nextLine();
-                System.out.println();
+            entrada.nextLine();
+
+            System.out.print("Pulsa INTRO para continuar...");
+            entrada.nextLine();
+            System.out.println();
         } while (opcion != 0);
+
+        entrada.close();
     }
 }
